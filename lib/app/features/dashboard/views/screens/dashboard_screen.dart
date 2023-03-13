@@ -64,7 +64,7 @@ class DashboardScreen extends GetView<DashboardController> {
                   _buildTaskContent(
                     onPressedMenu: () => controller.openDrawer(),
                   ),
-                  _buildCalendarContent(),
+                  // _buildCalendarContent(),
                 ],
               ),
             );
@@ -86,13 +86,13 @@ class DashboardScreen extends GetView<DashboardController> {
                   height: MediaQuery.of(context).size.height,
                   child: const VerticalDivider(),
                 ),
-                Flexible(
-                  flex: 4,
-                  child: SingleChildScrollView(
-                    controller: ScrollController(),
-                    child: _buildCalendarContent(),
-                  ),
-                ),
+                // Flexible(
+                //   flex: 4,
+                //   child: SingleChildScrollView(
+                //     controller: ScrollController(),
+                //     child: _buildCalendarContent(),
+                //   ),
+                // ),
               ],
             );
           },
@@ -118,13 +118,13 @@ class DashboardScreen extends GetView<DashboardController> {
                   height: MediaQuery.of(context).size.height,
                   child: const VerticalDivider(),
                 ),
-                Flexible(
-                  flex: 4,
-                  child: SingleChildScrollView(
-                    controller: ScrollController(),
-                    child: _buildCalendarContent(),
-                  ),
-                ),
+                // Flexible(
+                //   flex: 4,
+                //   child: SingleChildScrollView(
+                //     controller: ScrollController(),
+                //     child: _buildCalendarContent(),
+                //   ),
+                // ),
               ],
             );
           },

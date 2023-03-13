@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       scrollBehavior: CustomScrollBehaviour(),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
     );
   }
 }
