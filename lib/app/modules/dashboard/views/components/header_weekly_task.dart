@@ -7,7 +7,7 @@ class _HeaderWeeklyTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const HeaderText("Weekly Task"),
+        const HeaderText("Check OCR (recently added)"),
         const Spacer(),
         _buildArchive(),
         const SizedBox(width: 10),

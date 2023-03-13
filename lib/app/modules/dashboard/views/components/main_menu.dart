@@ -13,26 +13,26 @@ class _MainMenu extends StatelessWidget {
     return SelectionButton(
       data: [
         SelectionButtonData(
-          activeIcon: EvaIcons.home,
-          icon: EvaIcons.homeOutline,
-          label: "Home",
+          activeIcon: EvaIcons.fileAdd,
+          icon: EvaIcons.fileAddOutline,
+          label: "Add New products",
         ),
         SelectionButtonData(
           activeIcon: EvaIcons.bell,
           icon: EvaIcons.bellOutline,
-          label: "Notifications",
+          label: "QA",
           totalNotif: 100,
         ),
         SelectionButtonData(
           activeIcon: EvaIcons.checkmarkCircle2,
           icon: EvaIcons.checkmarkCircle,
-          label: "Task",
+          label: "Revision",
           totalNotif: 20,
         ),
         SelectionButtonData(
           activeIcon: EvaIcons.settings,
           icon: EvaIcons.settingsOutline,
-          label: "Settings",
+          label: "Approvals",
         ),
       ],
       onSelected: onSelected,

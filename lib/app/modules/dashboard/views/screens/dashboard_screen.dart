@@ -51,12 +51,14 @@ class DashboardScreen extends GetView<DashboardController> {
                 child: SingleChildScrollView(child: _buildSidebar(context)),
               ),
             ),
-      bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb)
-          ? null
-          : const _BottomNavbar(),
+      // bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb)
+      //     ? null
+      //     : const _BottomNavbar(),
       body: SafeArea(
         child: ResponsiveBuilder(
           mobileBuilder: (context, constraints) {
+            print("mobileBuilder");
+            
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,6 +72,7 @@ class DashboardScreen extends GetView<DashboardController> {
             );
           },
           tabletBuilder: (context, constraints) {
+            print("tabletBuilder");
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -97,9 +100,12 @@ class DashboardScreen extends GetView<DashboardController> {
             );
           },
           desktopBuilder: (context, constraints) {
+            print("desktopBuilder");
+
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // sidebar
                 Flexible(
                   flex: constraints.maxWidth > 1350 ? 3 : 4,
                   child: SingleChildScrollView(
@@ -107,6 +113,7 @@ class DashboardScreen extends GetView<DashboardController> {
                     child: _buildSidebar(context),
                   ),
                 ),
+
                 Flexible(
                   flex: constraints.maxWidth > 1350 ? 10 : 9,
                   child: SingleChildScrollView(
@@ -134,41 +141,45 @@ class DashboardScreen extends GetView<DashboardController> {
   }
 
   Widget _buildSidebar(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: UserProfile(
-            data: controller.dataProfil,
-            onPressed: controller.onPressedProfil,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: UserProfile(
+              data: controller.dataProfil,
+              onPressed: controller.onPressedProfil,
+            ),
           ),
-        ),
-        const SizedBox(height: 15),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: _MainMenu(onSelected: controller.onSelectedMainMenu),
-        ),
-        const Divider(
-          indent: 20,
-          thickness: 1,
-          endIndent: 20,
-          height: 60,
-        ),
-        _Member(member: controller.member),
-        const SizedBox(height: kSpacing),
-        _TaskMenu(
-          onSelected: controller.onSelectedTaskMenu,
-        ),
-        const SizedBox(height: kSpacing),
-        Padding(
-          padding: const EdgeInsets.all(kSpacing),
-          child: Text(
-            "2021 Teamwork lisence",
-            style: Theme.of(context).textTheme.caption,
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: _MainMenu(onSelected: controller.onSelectedMainMenu),
           ),
-        ),
-      ],
+          const Divider(
+            indent: 20,
+            thickness: 1,
+            endIndent: 20,
+            height: 60,
+          ),
+          // _Member(member: controller.member),
+          // const SizedBox(height: kSpacing),
+          // _TaskMenu(
+          //   onSelected: controller.onSelectedTaskMenu,
+          // ),
+          // const SizedBox(height: kSpacing),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(kSpacing),
+            child: Text(
+              "2021 Teamwork lisence",
+              style: Theme.of(context).textTheme.caption,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -188,32 +199,33 @@ class DashboardScreen extends GetView<DashboardController> {
                     icon: const Icon(Icons.menu),
                   ),
                 ),
-              Expanded(
-                child: SearchField(
-                  onSearch: controller.searchTask,
-                  hintText: "Search Task .. ",
-                ),
-              ),
+              // Expanded(
+              //   child: SearchField(
+              //     onSearch: controller.searchTask,
+              //     hintText: "Search Task .. ",
+              //   ),
+              // ),
             ],
           ),
-          const SizedBox(height: kSpacing),
-          Row(
-            children: [
-              Expanded(
-                child: HeaderText(
-                  DateTime.now().formatdMMMMY(),
-                ),
-              ),
-              const SizedBox(width: kSpacing / 2),
-              SizedBox(
-                width: 200,
-                child: TaskProgress(data: controller.dataTask),
-              ),
-            ],
-          ),
-          const SizedBox(height: kSpacing),
-          _TaskInProgress(data: controller.taskInProgress),
-          const SizedBox(height: kSpacing * 2),
+          // const SizedBox(height: kSpacing),
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: HeaderText(
+          //         DateTime.now().formatdMMMMY(),
+          //       ),
+          //     ),
+          //     const SizedBox(width: kSpacing / 2),
+          //     SizedBox(
+          //       width: 200,
+          //       child: TaskProgress(data: controller.dataTask),
+          //     ),
+          //   ],
+          // ),
+         
+          // const SizedBox(height: kSpacing),
+          // _TaskInProgress(data: controller.taskInProgress),
+          // const SizedBox(height: kSpacing * 2),
           const _HeaderWeeklyTask(),
           const SizedBox(height: kSpacing),
           _WeeklyTask(
