@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Daily Task',
       theme: AppTheme.basic,
-      initialRoute: Paths.dashboard,
+      initialRoute: Routes.dashboard,
       getPages: AppPages.routes,
       scrollBehavior: CustomScrollBehaviour(),
       debugShowCheckedModeBanner: true,

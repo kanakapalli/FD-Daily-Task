@@ -3,8 +3,10 @@ part of 'app_pages.dart';
 /// used to switch pages
 class Routes {
   static const dashboard = '/dashboard';
-  static const home = '/home';
-  static const LOGIN = '/login';
+  static const login = '/login';
+  static const product = '/product';
+  static const productDetail = '/productDetail';
+
 }
 
 /// contains a list of route names.

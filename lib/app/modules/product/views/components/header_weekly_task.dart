@@ -1,13 +1,18 @@
-part of dashboard;
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/material.dart';
 
-class _HeaderWeeklyTask extends StatelessWidget {
-  const _HeaderWeeklyTask({Key? key}) : super(key: key);
+import '../../../../shared_components/header_text.dart';
+
+class HeaderWeeklyTask extends StatelessWidget {
+  const HeaderWeeklyTask({Key? key, required this.title })
+      : super(key: key) ;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const HeaderText("Check OCR (recently added)"),
+        HeaderText(title),
         const Spacer(),
         _buildArchive(),
         const SizedBox(width: 10),
@@ -37,7 +42,8 @@ class _HeaderWeeklyTask extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.grey[850], backgroundColor: Colors.grey[100],
+        foregroundColor: Colors.grey[850],
+        backgroundColor: Colors.grey[100],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

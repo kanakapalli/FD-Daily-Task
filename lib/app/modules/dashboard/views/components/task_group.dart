@@ -1,7 +1,7 @@
 part of dashboard;
 
-class _TaskGroup extends StatelessWidget {
-  const _TaskGroup({
+class TaskGroup extends StatelessWidget {
+  const TaskGroup({
     required this.title,
     required this.data,
     required this.onPressed,

@@ -36,15 +36,13 @@ class UserProfile extends StatelessWidget {
             children: [
               _buildImage(),
               const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildName(),
-                    _buildJobdesk(),
-                  ],
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildName(),
+                  _buildJobdesk(),
+                ],
               )
             ],
           ),

@@ -7,7 +7,9 @@ class AppTheme {
   static ThemeData get basic => ThemeData(
         fontFamily: Font.nunito,
         canvasColor: Colors.white,
-        primarySwatch: Colors.indigo,
+        // primarySwatch: Colors.indigo,
+        useMaterial3: true,
+        colorSchemeSeed: Colors.green,
       );
 
   // you can add other custom theme in this class like  light theme, dark theme ,etc.
