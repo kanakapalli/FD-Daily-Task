@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../constans/app_constants.dart';
 import '../controllers/login_controller.dart';
-
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -64,13 +62,12 @@ class _LoginViewState extends State<LoginView> {
     return Row(
       children: [
         SizedBox(width: size.width * 0.02),
-
         Expanded(
           flex: 4,
           child: RotatedBox(
             quarterTurns: 3,
             child: Lottie.asset(
-              ImageAnimationPath.coin,
+              LottieAnimationPath.coin,
               height: size.height * 0.3,
               width: double.infinity,
               fit: BoxFit.fill,
@@ -86,7 +83,6 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
         SizedBox(width: size.width * 0.02),
-
       ],
     );
   }
@@ -117,7 +113,7 @@ class _LoginViewState extends State<LoginView> {
         size.width > 600
             ? Container()
             : Lottie.asset(
-                   ImageAnimationPath.wave,
+                LottieAnimationPath.wave,
                 height: size.height * 0.2,
                 width: size.width,
                 fit: BoxFit.fill,
@@ -270,9 +266,8 @@ class _LoginViewState extends State<LoginView> {
                       style: Theme.of(context).textTheme.displayLarge,
                       children: [
                         TextSpan(
-                          text: " Sign up",
-                          style: Theme.of(context).textTheme.displayLarge
-                        ),
+                            text: " Sign up",
+                            style: Theme.of(context).textTheme.displayLarge),
                       ],
                     ),
                   ),

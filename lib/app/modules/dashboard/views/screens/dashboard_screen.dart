@@ -41,48 +41,53 @@ class DashboardScreen extends GetView<DashboardController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: controller.scafoldKey,
-      drawer: SizedBox(
-          width: 300,
-          child: Obx(() => CustomDrawer(
-                controller: controller,
-                changeIndex: controller.changeIndex,
-                currentIndex: controller.currentIndex.value,
-              ))),
-
-      appBar: PreferredSize(
-          child: LayoutBuilder(builder: (context, constraints) {
-            if (constraints.maxWidth >= 1100) {
-              return const SizedBox();
-            }
-            return Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: kSpacing / 2),
-                  child: Builder(builder: (context) {
-                    return IconButton(
-                      onPressed: () => controller.openDrawer(),
-                      icon: const Icon(Icons.menu),
-                    );
-                  }),
-                ),
-                // Expanded(
-                //   child: SearchField(
-                //     onSearch: controller.searchTask,
-                //     hintText: "Search Task .. ",
-                //   ),
-                // ),
-              ],
-            );
-          }),
-          preferredSize: const Size(double.infinity, 80)),
-
-      // bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb)
-      //     ? null
-      //     : const _BottomNavbar(),
-
-      body: SafeArea(child: Obx(() => tabs[controller.currentIndex.value])),
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: SafeArea(
+        child: Scaffold(
+          key: controller.scafoldKey,
+          drawer: SizedBox(
+              width: 300,
+              child: Obx(() => CustomDrawer(
+                    controller: controller,
+                    changeIndex: controller.changeIndex,
+                    currentIndex: controller.currentIndex.value,
+                  ))),
+          
+          appBar: PreferredSize(
+              child: LayoutBuilder(builder: (context, constraints) {
+                if (constraints.maxWidth >= 1100) {
+                  return const SizedBox();
+                }
+                return Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: kSpacing / 2),
+                      child: Builder(builder: (context) {
+                        return IconButton(
+                          onPressed: () => controller.openDrawer(),
+                          icon: const Icon(Icons.menu),
+                        );
+                      }),
+                    ),
+                    // Expanded(
+                    //   child: SearchField(
+                    //     onSearch: controller.searchTask,
+                    //     hintText: "Search Task .. ",
+                    //   ),
+                    // ),
+                  ],
+                );
+              }),
+              preferredSize: const Size(double.infinity, 0)),
+          
+          // bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb)
+          //     ? null
+          //     : const _BottomNavbar(),
+          
+          body: SafeArea(child: Obx(() => tabs[controller.currentIndex.value])),
+        ),
+      ),
     );
   }
 

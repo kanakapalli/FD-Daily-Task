@@ -1,17 +1,10 @@
 import 'package:daily_task/app/constans/app_constants.dart';
-import 'package:daily_task/app/utils/helpers/app_helpers.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ListTaskAssignedData {
-  final Icon icon;
-  final String label;
-  final String jobDesk;
-  final DateTime? editDate;
-  final String? assignTo;
-
   const ListTaskAssignedData({
     required this.icon,
     required this.label,
@@ -19,6 +12,12 @@ class ListTaskAssignedData {
     this.editDate,
     this.assignTo,
   });
+
+  final String? assignTo;
+  final DateTime? editDate;
+  final Icon icon;
+  final String jobDesk;
+  final String label;
 }
 
 class ListTaskAssigned extends StatelessWidget {
@@ -30,35 +29,20 @@ class ListTaskAssigned extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final ListTaskAssignedData data;
-  final Function() onPressed;
   final Function()? onPressedAssign;
   final Function()? onPressedMember;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onPressed,
-      hoverColor: Colors.transparent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
-      ),
-      leading: _buildIcon(),
-      title: _buildTitle(),
-      subtitle: _buildSubtitle(),
-      trailing: _buildAssign(),
-    );
-  }
+  final ListTaskAssignedData data;
+  final Function() onPressed;
 
   Widget _buildIcon() {
     return Container(
-      width: 50,
-      height: 50,
+      width: 80,
+      height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.blueGrey.withOpacity(.1),
       ),
-      child: data.icon,
+      child: Image.asset(ImagePath.jam),
     );
   }
 
@@ -87,23 +71,13 @@ class ListTaskAssigned extends StatelessWidget {
 
   Widget _buildAssign() {
     return (data.assignTo != null)
-        ? InkWell(
-            onTap: onPressedMember,
-            borderRadius: BorderRadius.circular(22),
-            child: Tooltip(
-              message: data.assignTo!,
-              child: CircleAvatar(
-                radius: 22,
-                backgroundColor: Colors.orange.withOpacity(.2),
-                child: Text(
-                  data.assignTo!.getInitialName(2).toUpperCase(),
-                  style: const TextStyle(
-                    color: Colors.orange,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+        ? Container(
+            padding: const EdgeInsets.all(6),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.3),
+                borderRadius: const BorderRadius.all(Radius.circular(6))),
+            child: const Text("in review"),
           )
         : DottedBorder(
             color: kFontColorPallets[1],
@@ -119,5 +93,22 @@ class ListTaskAssigned extends StatelessWidget {
               tooltip: "assign",
             ),
           );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: const EdgeInsets.only(bottom: 12, right: 12, left: 12),
+      onTap: onPressed,
+      hoverColor: Colors.green.withOpacity(0.3),
+      visualDensity: const VisualDensity(vertical: 4),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(kBorderRadius),
+      ),
+      leading: _buildIcon(),
+      title: _buildTitle(),
+      subtitle: _buildSubtitle(),
+      trailing: _buildAssign(),
+    );
   }
 }

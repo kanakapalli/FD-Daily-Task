@@ -1,3 +1,4 @@
+import 'package:daily_task/app/config/routes/app_pages.dart';
 import 'package:daily_task/app/shared_components/list_task_assigned.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,9 @@ class ProductController extends GetxController {
     ]
   ];
 
-  void onPressedTask(int index, ListTaskAssignedData data) {}
+  void onPressedTask(int index, ListTaskAssignedData data) {
+    Get.toNamed(Routes.productDetail);
+  }
   void onPressedAssignTask(int index, ListTaskAssignedData data) {}
   void onPressedMemberTask(int index, ListTaskAssignedData data) {}
 

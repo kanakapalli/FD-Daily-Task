@@ -8,8 +8,14 @@ import 'components/header_weekly_task.dart';
 import 'components/weekly_task.dart';
 
 class ProductListView extends GetView<ProductController> {
-  const ProductListView(this.title, {Key? key}) : super(key: key);
+  const ProductListView(
+    this.title, {
+    Key? key,
+    this.showButtons = false,
+  }) : super(key: key);
   final String title;
+  final bool showButtons;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,6 +24,7 @@ class ProductListView extends GetView<ProductController> {
         children: [
           HeaderWeeklyTask(
             title: title,
+            showButtons: showButtons,
           ),
           const SizedBox(height: kSpacing),
           WeeklyTask(

@@ -5,7 +5,7 @@ class DashboardController extends GetxController {
 
   RxInt currentIndex = 0.obs;
 
-  changeIndex(index) =>  currentIndex.value = index;
+  changeIndex(index) => currentIndex.value = index;
 
   List<Widget> tabs = [
     const OCRCheck(),
@@ -14,17 +14,13 @@ class DashboardController extends GetxController {
     const OverView()
   ];
 
-
-
-
   final dataProfil = const UserProfileData(
-    image: AssetImage(ImageRasterPath.man),
+    image: AssetImage(ImagePath.man),
     name: "Firgia",
     jobDesk: "Project Manager",
   );
 
   final member = ["Avril Kimberly", "Michael Greg"];
-
 
   final taskGroup = [
     [
@@ -100,7 +96,6 @@ class DashboardController extends GetxController {
     )
   ];
 
-
   void onPressedProfil() {}
 
   void onSelectedMainMenu(int index, SelectionButtonData value) {}
@@ -108,11 +103,11 @@ class DashboardController extends GetxController {
 
   void searchTask(String value) {}
 
-
   void onPressedCalendar() {}
   void onPressedTaskGroup(int index, ListTaskDateData data) {}
 
   void openDrawer() {
+    print("object");
     if (scafoldKey.currentState != null) {
       scafoldKey.currentState!.openDrawer();
     }

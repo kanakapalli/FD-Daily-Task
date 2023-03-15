@@ -41,6 +41,11 @@ class CustomDrawer extends StatelessWidget {
       ),
       //trailing: const MyTrailingWidget(),
       destinations: const <NavigationRailDestination>[
+         NavigationRailDestination(
+          icon: Icon(Icons.house_outlined),
+          selectedIcon: Icon(Icons.house),
+          label: Text('Uploader'),
+        ),
         NavigationRailDestination(
           icon: Icon(Icons.house_outlined),
           selectedIcon: Icon(Icons.house),

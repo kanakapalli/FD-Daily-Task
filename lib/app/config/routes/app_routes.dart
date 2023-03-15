@@ -6,7 +6,10 @@ class Routes {
   static const login = '/login';
   static const product = '/product';
   static const productDetail = '/productDetail';
+  static const dataAcquisitionMobile = '/data-acquisition-mobile';
+  static const imageCapture = '/data-imageCapture-mobile';
 
+  
 }
 
 /// contains a list of route names.

@@ -5,6 +5,8 @@ import 'app/config/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'app/modules/croper/view.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,13 +21,14 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.basic,
       initialRoute: Routes.dashboard,
       getPages: AppPages.routes,
-      scrollBehavior: CustomScrollBehaviour(),
-      debugShowCheckedModeBanner: true,
+      // home: const CropperView(),
+      scrollBehavior: CustomScrollBehavior(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class CustomScrollBehaviour extends MaterialScrollBehavior {
+class CustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
