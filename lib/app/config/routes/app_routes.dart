@@ -8,8 +8,6 @@ class Routes {
   static const productDetail = '/productDetail';
   static const dataAcquisitionMobile = '/data-acquisition-mobile';
   static const imageCapture = '/data-imageCapture-mobile';
-
-  
 }
 
 /// contains a list of route names.

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../../shared_components/header_text.dart';
 
 class HeaderWeeklyTask extends StatelessWidget {
-  const HeaderWeeklyTask({Key? key, required this.title,  this.showButtons = false}) : super(key: key);
+  const HeaderWeeklyTask(
+      {Key? key, required this.title, this.showButtons = false})
+      : super(key: key);
   final String title;
   final bool showButtons;
 
@@ -14,14 +16,14 @@ class HeaderWeeklyTask extends StatelessWidget {
       children: [
         HeaderText(title),
         const Spacer(),
-        if(showButtons)
-        Row(
-          children: [
-            _buildArchive(),
-            const SizedBox(width: 10),
-            _buildAddNewButton(),
-          ],
-        ),
+        if (showButtons)
+          Row(
+            children: [
+              _buildArchive(),
+              const SizedBox(width: 10),
+              _buildAddNewButton(),
+            ],
+          ),
       ],
     );
   }

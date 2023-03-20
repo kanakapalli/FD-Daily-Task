@@ -6,12 +6,39 @@ import 'package:get/get.dart';
 
 import '../../../shared_components/list_task_date.dart';
 
-class ProductController extends GetxController {
-  //TODO: Implement ProductController
+class ProductController extends GetxController
+    with SingleGetTickerProviderMixin {
+  @override
+  void onInit() {
+    super.onInit();
+    tabController = TabController(vsync: this, length: 3);
+    tabController.addListener(() {
+      print("tabController.index=====");
 
-  final count = 0.obs;
+      currentIndex.value = tabController.index;
+      print(currentIndex.value);
+    });
+  }
 
-  void increment() => count.value++;
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
+  next() {
+    if (currentIndex.value != 2) {
+      currentIndex.value += 1;
+      print(currentIndex.value);
+      tabController.animateTo(currentIndex.value);
+    }else{
+
+    }
+  }
+
+  final scafoldKey = GlobalKey<ScaffoldState>();
+
+  RxInt currentIndex = 0.obs;
 
   final weeklyTask = [
     ListTaskAssignedData(
@@ -92,7 +119,10 @@ class ProductController extends GetxController {
   void onPressedTask(int index, ListTaskAssignedData data) {
     Get.toNamed(Routes.productDetail);
   }
+
   void onPressedAssignTask(int index, ListTaskAssignedData data) {}
   void onPressedMemberTask(int index, ListTaskAssignedData data) {}
 
+  //detail tab controls
+  late TabController tabController;
 }

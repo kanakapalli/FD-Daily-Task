@@ -63,12 +63,10 @@ class DashboardScreen extends GetView<DashboardController> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: kSpacing / 2),
-                      child: Builder(builder: (context) {
-                        return IconButton(
-                          onPressed: () => controller.openDrawer(),
-                          icon: const Icon(Icons.menu),
-                        );
-                      }),
+                      child: IconButton(
+                        onPressed: () => controller.openDrawer(),
+                        icon: const Icon(Icons.menu),
+                      ),
                     ),
                     // Expanded(
                     //   child: SearchField(

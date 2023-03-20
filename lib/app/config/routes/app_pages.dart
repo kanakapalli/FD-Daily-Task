@@ -1,8 +1,9 @@
-import 'package:daily_task/app/modules/DataAcquisitionMobile/views/image_capture.dart';
 import 'package:get/get.dart';
 
 import '../../modules/DataAcquisitionMobile/bindings/data_acquisition_mobile_binding.dart';
 import '../../modules/DataAcquisitionMobile/views/data_acquisition_mobile_view.dart';
+import '../../modules/DataAcquisitionMobile/views/image_capture.dart';
+
 import '../../modules/dashboard/views/screens/dashboard_screen.dart';
 import '../../modules/login/bindings/login_binding.dart';
 import '../../modules/login/views/login_view.dart';
@@ -45,7 +46,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.imageCapture,
-      page: () => ImageCaptureView(),
+      page: () => const ImageCaptureView(),
       binding: DataAcquisitionMobileBinding(),
     ),
   ];

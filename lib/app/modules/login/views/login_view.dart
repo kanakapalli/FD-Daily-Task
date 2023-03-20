@@ -112,8 +112,8 @@ class _LoginViewState extends State<LoginView> {
       children: [
         size.width > 600
             ? Container()
-            : Lottie.asset(
-                LottieAnimationPath.wave,
+            : Lottie.network(
+                "https://lottiefiles.com/53888-login-icon",
                 height: size.height * 0.2,
                 width: size.width,
                 fit: BoxFit.fill,

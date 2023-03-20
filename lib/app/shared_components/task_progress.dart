@@ -1,4 +1,3 @@
-import 'package:daily_task/app/constans/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -24,28 +23,29 @@ class TaskProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _buildText(),
-        Expanded(child: _buildProgress()),
+        _buildText(context),
+        Expanded(child: _buildProgress(context)),
       ],
     );
   }
 
-  Widget _buildText() {
+  Widget _buildText(BuildContext context) {
     return Text(
       "${data.totalCompleted} of ${data.totalTask} completed",
       style: TextStyle(
         fontWeight: FontWeight.w600,
-        color: kFontColorPallets[2],
+        color: Theme.of(context).primaryColor,
         fontSize: 13,
       ),
     );
   }
 
-  Widget _buildProgress() {
+  Widget _buildProgress(BuildContext context) {
     return LinearPercentIndicator(
+      animation: true,
+      progressColor: Theme.of(context).primaryColor,
       percent: data.totalCompleted / data.totalTask,
-      progressColor: Colors.blueGrey,
-      backgroundColor: Colors.blueGrey[200],
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
     );
   }
 }
