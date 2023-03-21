@@ -27,6 +27,8 @@ class ProductDetailForm extends GetView<ProductController> {
   const ProductDetailForm({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var pixRatio = MediaQuery.of(context).devicePixelRatio;
+print("pixRatio $pixRatio");
     return Scaffold(
       key: controller.scafoldKey,
       appBar: AppBar(

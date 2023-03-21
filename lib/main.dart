@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Daily Task',
       theme: AppTheme.basic,
-      initialRoute: Routes.dashboard,
+      initialRoute: Routes.login,
       getPages: AppPages.routes,
       // home: const CropperView(),
       scrollBehavior: CustomScrollBehavior(),

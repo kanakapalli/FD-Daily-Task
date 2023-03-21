@@ -1,41 +1,17 @@
-import 'package:daily_task/app/config/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../constans/app_constants.dart';
 import '../controllers/login_controller.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
-
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    LoginController loginController = Get.find<LoginController>();
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -44,9 +20,9 @@ class _LoginViewState extends State<LoginView> {
         body: LayoutBuilder(
           builder: (context, constraints) {
             if (constraints.maxWidth > 600) {
-              return _buildLargeScreen(size, loginController);
+              return _buildLargeScreen(context, size);
             } else {
-              return _buildSmallScreen(size, loginController);
+              return _buildSmallScreen(context, size);
             }
           },
         ),
@@ -56,8 +32,8 @@ class _LoginViewState extends State<LoginView> {
 
   /// For large screens
   Widget _buildLargeScreen(
+    BuildContext context,
     Size size,
-    LoginController loginController,
   ) {
     return Row(
       children: [
@@ -77,10 +53,7 @@ class _LoginViewState extends State<LoginView> {
         SizedBox(width: size.width * 0.06),
         Expanded(
           flex: 5,
-          child: _buildMainBody(
-            size,
-            loginController,
-          ),
+          child: _buildMainBody(context, size),
         ),
         SizedBox(width: size.width * 0.02),
       ],
@@ -89,21 +62,18 @@ class _LoginViewState extends State<LoginView> {
 
   /// For Small screens
   Widget _buildSmallScreen(
+    BuildContext context,
     Size size,
-    LoginController loginController,
   ) {
     return Center(
-      child: _buildMainBody(
-        size,
-        loginController,
-      ),
+      child: _buildMainBody(context, size),
     );
   }
 
   /// Main Body
   Widget _buildMainBody(
+    BuildContext context,
     Size size,
-    LoginController loginController,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +114,7 @@ class _LoginViewState extends State<LoginView> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20),
           child: Form(
-            key: _formKey,
+            key: controller.formKey,
             child: Column(
               children: [
                 /// username or Gmail
@@ -157,7 +127,7 @@ class _LoginViewState extends State<LoginView> {
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
-                  controller: nameController,
+                  controller: controller.emailController,
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -200,18 +170,18 @@ class _LoginViewState extends State<LoginView> {
                 Obx(
                   () => TextFormField(
                     // style: kTextFormFieldStyle(),
-                    controller: passwordController,
-                    obscureText: loginController.isObscure.value,
+                    controller: controller.passwordController,
+                    obscureText: controller.isObscure.value,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_open),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          loginController.isObscure.value
+                          controller.isObscure.value
                               ? Icons.visibility
                               : Icons.visibility_off,
                         ),
                         onPressed: () {
-                          loginController.isObscureActive();
+                          controller.isObscureActive();
                         },
                       ),
                       hintText: 'Password',
@@ -235,7 +205,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: size.height * 0.01,
                 ),
-                Text(
+                const Text(
                   'Creating an account means you\'re okay with our Terms of Services and our Privacy Policy',
                   // style: kLoginTermsAndPrivacyStyle(size),
                   textAlign: TextAlign.center,
@@ -245,7 +215,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
 
                 /// Login Button
-                loginButton(),
+                loginButton(controller),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
@@ -254,11 +224,11 @@ class _LoginViewState extends State<LoginView> {
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
-                    nameController.clear();
-                    emailController.clear();
-                    passwordController.clear();
-                    _formKey.currentState?.reset();
-                    loginController.isObscure.value = true;
+                    // nameController.clear();
+                    controller.emailController.clear();
+                    controller.passwordController.clear();
+                    controller.formKey.currentState?.reset();
+                    controller.isObscure.value = true;
                   },
                   child: RichText(
                     text: TextSpan(
@@ -281,7 +251,7 @@ class _LoginViewState extends State<LoginView> {
   }
 
   // Login Button
-  Widget loginButton() {
+  Widget loginButton(LoginController controller) {
     return SizedBox(
       width: double.infinity,
       height: 55,
@@ -297,9 +267,8 @@ class _LoginViewState extends State<LoginView> {
         onPressed: () {
           print("asdasd");
           // Validate returns true if the form is valid, or false otherwise.
-          if (_formKey.currentState!.validate()) {
-            // ... Navigate To your Home Page
-            Get.toNamed(Routes.dashboard);
+          if (controller.formKey.currentState!.validate()) {
+            controller.login();
           }
         },
         child: const Text('Login'),

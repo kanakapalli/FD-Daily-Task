@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:crop_your_image/crop_your_image.dart';
@@ -22,12 +23,32 @@ class _CropperViewState extends State<CropperView> {
   _CropperViewState();
 
   String imageUrl =
-      "https://images.unsplash.com/photo-1489389944381-3471b5b30f04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80";
+      "https://blog.beaconstac.com/wp-content/uploads/2020/04/Untitled-design.png";
 
   loadData() async {
     final response = await http.get(Uri.parse(imageUrl));
     image = response.bodyBytes;
+    // var decodedImage = await decodeImageFromList(response.re());
     setState(() {});
+  }
+Size? size ;
+  Future<Size> _calculateImageDimension() {
+    Completer<Size> completer = Completer();
+    Image image = Image.network(imageUrl);
+    image.image.resolve(ImageConfiguration()).addListener(
+      ImageStreamListener(
+        (ImageInfo image, bool synchronousCall) {
+          var myImage = image.image;
+          size = Size(myImage.width.toDouble(), myImage.height.toDouble());
+          print("size");
+
+          print(size);
+          completer.complete(size);
+        },
+      ),
+    );
+
+    return completer.future;
   }
 
   @override
@@ -35,6 +56,7 @@ class _CropperViewState extends State<CropperView> {
     // TODO: implement initState
     super.initState();
     loadData();
+    _calculateImageDimension();
   }
 
   Uint8List? image;
@@ -54,9 +76,15 @@ class _CropperViewState extends State<CropperView> {
           // radius: 12,
           // maskColor : Theme.of(context).primaryColor,
           // baseColor: Colors.blue,
-          interactive:true,
+          // interactive:true,
+          initialSize: 0.5,
+          // fixArea: true,
           onMoved: (value){
             print(value);
+            print(value.size.width );
+            print(value.size.height);
+
+
           },
           onStatusChanged: (value) {
               print(value);

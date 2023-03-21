@@ -41,10 +41,23 @@ dependencies:
   http: ^0.13.5
   image_picker: ^0.8.7
   flutter_barcode_scanner:
-  flutter_tesseract_ocr: ^0.4.20
+    # not used only for testing
+  flutter_tesseract_ocr: ^0.4.20 
+  flutter_typeahead: ^4.3.7
+
+  freezed_annotation: 2.0.3
+  json_annotation: 4.5.0
+  dio: 4.0.6
+  # update to latest
+  # dio: ^5.0.3
 
 dev_dependencies:
   flutter_lints: ^1.0.0
+  build_runner: 2.1.11
+  freezed: 2.0.3+1
+  json_serializable: 6.2.0
+
+
   flutter_test:
     sdk: flutter
 
